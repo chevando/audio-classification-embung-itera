@@ -254,10 +254,12 @@ def main():
         
         with tab1:
             fig, ax = plt.subplots(figsize=(12, 4))
+            # Explicitly set a color to avoid matplotlib prop_cycle access inside librosa
             librosa.display.waveshow(
                 y=st.session_state['signal'],
                 sr=st.session_state['sr'],
-                ax=ax
+                ax=ax,
+                color='skyblue'
             )
             ax.set_title('Audio Waveform', fontsize=14, fontweight='bold')
             ax.set_xlabel('Time (s)')

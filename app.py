@@ -140,7 +140,7 @@ def main():
     
     # Sidebar
     with st.sidebar:
-        st.image("https://via.placeholder.com/300x100/4CAF50/FFFFFF?text=ITERA", use_container_width=True)
+        st.image("https://via.placeholder.com/300x100/4CAF50/FFFFFF?text=ITERA", use_column_width=True)
         st.markdown("## 📋 Informasi Proyek")
         st.info("""
         **Model:** Transformer Encoder

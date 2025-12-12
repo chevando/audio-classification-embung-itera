@@ -1,0 +1,54 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+*.egg
+*.egg-info/
+dist/
+build/
+*.pyc
+
+# Virtual Environment
+venv/
+env/
+ENV/
+.venv
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Jupyter Notebook
+.ipynb_checkpoints/
+*.ipynb
+
+# Data files (kecuali model)
+*.npy
+*.csv
+X_gabungan.npy
+y_gabungan.npy
+
+# Audio files
+*.wav
+*.mp3
+*.ogg
+UrbanSound8K/
+
+# Logs
+*.log
+
+# Temporary files
+*.tmp
+*.temp
+
+# Streamlit
+.streamlit/secrets.toml

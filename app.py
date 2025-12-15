@@ -101,7 +101,7 @@ def set_custom_style():
         /* File uploader */
         [data-testid="stFileUploader"] {{
             background-color: rgba(255, 255, 255, 0.95);
-            padding: 25px;
+            padding: 10px;
             border-radius: 15px;
             border: 2px dashed #4CAF50;
         }}

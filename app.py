@@ -24,7 +24,7 @@ def set_custom_style():
             return None
     
     # Try to load background image
-    bg_image = get_base64_image("assets/embung_itera.jpg")
+    bg_image = get_base64_image("assets/bg dl.jpg")
     
     # CSS with or without image
     if bg_image:

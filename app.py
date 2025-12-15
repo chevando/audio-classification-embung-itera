@@ -59,7 +59,7 @@ def set_custom_style():
         
         /* Main content area */
         .block-container {{
-            background-color: rgba(255, 255, 255, 0.9);
+            background-color: rgba(255, 255, 255, 0.5);
             padding: 30px;
             border-radius: 20px;
             margin-top: 20px;
@@ -101,7 +101,7 @@ def set_custom_style():
         /* File uploader */
         [data-testid="stFileUploader"] {{
             background-color: rgba(255, 255, 255, 0.95);
-            padding: 10px;
+            padding: 25px;
             border-radius: 15px;
             border: 2px dashed #4CAF50;
         }}

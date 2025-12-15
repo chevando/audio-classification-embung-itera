@@ -8,121 +8,6 @@ from io import BytesIO
 import matplotlib.pyplot as plt
 import librosa.display
 
-# ==================== CUSTOM STYLING ====================
-def set_custom_style():
-    """Set custom background using Embung ITERA image"""
-    import base64
-    
-    # Function to convert image to base64
-    @st.cache_data
-    def get_base64_image(image_path):
-        try:
-            with open(image_path, "rb") as img_file:
-                return base64.b64encode(img_file.read()).decode()
-        except FileNotFoundError:
-            st.warning("⚠️ Background image not found. Using gradient instead.")
-            return None
-    
-    # Try to load background image
-    bg_image = get_base64_image("assets/embung_itera.jpg")
-    
-    # CSS with or without image
-    if bg_image:
-        bg_style = f"""
-        .stApp {{
-            background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), 
-                              url("data:image/jpg;base64,{bg_image}");
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
-            background-repeat: no-repeat;
-        }}
-        """
-    else:
-        bg_style = """
-        .stApp {
-            background: linear-gradient(135deg, #0ba360 0%, #3cba92 100%);
-        }
-        """
-    
-    st.markdown(
-        f"""
-        <style>
-        /* Background utama dengan foto Embung ITERA */
-        {bg_style}
-        
-        /* Sidebar - Transparan dengan blur */
-        [data-testid="stSidebar"] {{
-            background: rgba(27, 94, 32, 0.85);
-            backdrop-filter: blur(10px);
-        }}
-        
-        /* Main content area */
-        .block-container {{
-            background-color: rgba(255, 255, 255, 0.9);
-            padding: 30px;
-            border-radius: 20px;
-            margin-top: 20px;
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-        }}
-        
-        /* Header styling */
-        h1 {{
-            color: white !important;
-            text-shadow: 3px 3px 8px rgba(0,0,0,0.8);
-            background: linear-gradient(90deg, rgba(76, 175, 80, 0.8), rgba(56, 142, 60, 0.8));
-            padding: 20px;
-            border-radius: 15px;
-            margin-bottom: 20px;
-        }}
-        
-        h2, h3 {{
-            color: #1B5E20 !important;
-        }}
-        
-        /* Button styling */
-        .stButton>button {{
-            background: linear-gradient(90deg, #4CAF50 0%, #45a049 100%);
-            color: white;
-            border: none;
-            border-radius: 10px;
-            padding: 12px 28px;
-            font-weight: bold;
-            font-size: 16px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-            transition: all 0.3s;
-        }}
-        
-        .stButton>button:hover {{
-            transform: translateY(-3px);
-            box-shadow: 0 6px 12px rgba(0,0,0,0.3);
-        }}
-        
-        /* File uploader */
-        [data-testid="stFileUploader"] {{
-            background-color: rgba(255, 255, 255, 0.95);
-            padding: 25px;
-            border-radius: 15px;
-            border: 2px dashed #4CAF50;
-        }}
-        
-        /* Sidebar text color */
-        [data-testid="stSidebar"] h2, 
-        [data-testid="stSidebar"] h3,
-        [data-testid="stSidebar"] p,
-        [data-testid="stSidebar"] li {{
-            color: white !important;
-        }}
-        
-        /* Progress bar */
-        .stProgress > div > div {{
-            background-color: #4CAF50;
-        }}
-        </style>
-        """,
-        unsafe_allow_html=True
-    )
-
 # ==================== KONFIGURASI ====================
 SAMPLE_RATE = 22050
 SOUND_DURATION = 2.95
@@ -248,9 +133,6 @@ def main():
         layout="wide"
     )
     
-    # Apply custom styling
-    set_custom_style()
-    
     # Header
     st.title("🔊 Klasifikasi Suara Menggunakan Transformer")
     st.markdown("### Implementasi Transfer Learning untuk Klasifikasi Suara di Embung A ITERA")
@@ -258,32 +140,7 @@ def main():
     
     # Sidebar
     with st.sidebar:
-        # === LOGO SECTION ===
-        col_logo1, col_logo2, col_logo3 = st.columns([1, 1, 1])
-        
-        with col_logo1:
-            try:
-                st.image("assets/logo_itera.png", use_container_width=True)
-                st.caption("ITERA")
-            except:
-                st.markdown("🏛️")
-        
-        with col_logo2:
-            try:
-                st.image("assets/logo_prodi.png", use_container_width=True)
-                st.caption("Prodi")
-            except:
-                st.markdown("🎓")
-        
-        with col_logo3:
-            try:
-                st.image("assets/logo_jurusan.png", use_container_width=True)
-                st.caption("Jurusan")
-            except:
-                st.markdown("💻")
-        
-        st.markdown("---")
-        
+        st.image("https://via.placeholder.com/300x100/4CAF50/FFFFFF?text=ITERA", use_column_width=True)
         st.markdown("## 📋 Informasi Proyek")
         st.info("""
         **Model:** Transformer Encoder
@@ -397,6 +254,7 @@ def main():
         
         with tab1:
             fig, ax = plt.subplots(figsize=(12, 4))
+            # Explicitly set a color to avoid matplotlib prop_cycle access inside librosa
             librosa.display.waveshow(
                 y=st.session_state['signal'],
                 sr=st.session_state['sr'],
@@ -445,8 +303,8 @@ def main():
     # Footer
     st.markdown("---")
     st.markdown("""
-    <div style='text-align: center; color: white;'>
-        <p><b>Developed for Deep Learning Project - ITERA</b></p>
+    <div style='text-align: center; color: #666;'>
+        <p>Developed for Deep Learning Project - ITERA</p>
         <p>Model: Transformer Encoder | Dataset: UrbanSound8K + Custom Data</p>
     </div>
     """, unsafe_allow_html=True)
